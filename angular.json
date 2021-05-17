@@ -149,6 +149,242 @@
           }
         }
       }
+    },
+    "legal-workspace": {
+      "projectType": "application",
+      "root": "apps/legal-workspace",
+      "sourceRoot": "apps/legal-workspace/src",
+      "prefix": "test-nx-workspace",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/legal-workspace",
+            "index": "apps/legal-workspace/src/index.html",
+            "main": "apps/legal-workspace/src/main.ts",
+            "polyfills": "apps/legal-workspace/src/polyfills.ts",
+            "tsConfig": "apps/legal-workspace/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/legal-workspace/src/favicon.ico",
+              "apps/legal-workspace/src/assets"
+            ],
+            "styles": ["apps/legal-workspace/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/legal-workspace/src/environments/environment.ts",
+                  "with": "apps/legal-workspace/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "legal-workspace:build:production"
+            },
+            "development": {
+              "browserTarget": "legal-workspace:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "legal-workspace:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/legal-workspace/src/**/*.ts",
+              "apps/legal-workspace/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/legal-workspace"],
+          "options": {
+            "jestConfig": "apps/legal-workspace/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "legal-workspace-e2e": {
+      "root": "apps/legal-workspace-e2e",
+      "sourceRoot": "apps/legal-workspace-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/legal-workspace-e2e/cypress.json",
+            "tsConfig": "apps/legal-workspace-e2e/tsconfig.e2e.json",
+            "devServerTarget": "legal-workspace:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "legal-workspace:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/legal-workspace-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "cases-queue": {
+      "projectType": "application",
+      "root": "apps/cases-queue",
+      "sourceRoot": "apps/cases-queue/src",
+      "prefix": "test-nx-workspace",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/cases-queue",
+            "index": "apps/cases-queue/src/index.html",
+            "main": "apps/cases-queue/src/main.ts",
+            "polyfills": "apps/cases-queue/src/polyfills.ts",
+            "tsConfig": "apps/cases-queue/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/cases-queue/src/favicon.ico",
+              "apps/cases-queue/src/assets"
+            ],
+            "styles": ["apps/cases-queue/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/cases-queue/src/environments/environment.ts",
+                  "with": "apps/cases-queue/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "cases-queue:build:production"
+            },
+            "development": {
+              "browserTarget": "cases-queue:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "cases-queue:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/cases-queue/src/**/*.ts",
+              "apps/cases-queue/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/cases-queue"],
+          "options": {
+            "jestConfig": "apps/cases-queue/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "cases-queue-e2e": {
+      "root": "apps/cases-queue-e2e",
+      "sourceRoot": "apps/cases-queue-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/cases-queue-e2e/cypress.json",
+            "tsConfig": "apps/cases-queue-e2e/tsconfig.e2e.json",
+            "devServerTarget": "cases-queue:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "cases-queue:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/cases-queue-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
     }
   }
 }

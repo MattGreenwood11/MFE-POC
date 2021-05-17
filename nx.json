@@ -25,6 +25,20 @@
     "customer-portal-e2e": {
       "tags": [],
       "implicitDependencies": ["customer-portal"]
+    },
+    "legal-workspace": {
+      "tags": []
+    },
+    "legal-workspace-e2e": {
+      "tags": [],
+      "implicitDependencies": ["legal-workspace"]
+    },
+    "cases-queue": {
+      "tags": []
+    },
+    "cases-queue-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cases-queue"]
     }
   }
 }
