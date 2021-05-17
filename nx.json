@@ -39,6 +39,13 @@
     "cases-queue-e2e": {
       "tags": [],
       "implicitDependencies": ["cases-queue"]
+    },
+    "message-center": {
+      "tags": []
+    },
+    "message-center-e2e": {
+      "tags": [],
+      "implicitDependencies": ["message-center"]
     }
   }
 }
