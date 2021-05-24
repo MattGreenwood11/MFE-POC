@@ -8,7 +8,12 @@ import { RouterModule } from '@angular/router';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    RouterModule.forRoot([
+      {
+        path: 'message-center',
+        loadChildren: () => import('messageCenter/Module').then(m => m.AppModule)
+      }
+    ], { initialNavigation: 'enabled' }),
   ],
   providers: [],
   bootstrap: [AppComponent],
