@@ -14,7 +14,7 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: false
-  },   
+  },
   resolve: {
     alias: {
       ...sharedMappings.getAliases(),
@@ -22,31 +22,21 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      
-        // For remotes (please adjust)
-        // name: "legalWorkspace",
-        // filename: "remoteEntry.js",
-        // exposes: {
-        //     './Component': './apps/legal-workspace/src/app/app.component.ts',
-        // },        
-        
-        // For hosts (please adjust)
-        // remotes: {
-        //     "customerPortal": "customerPortal@http://localhost:4200/remoteEntry.js",
-        //     "casesQueue": "casesQueue@http://localhost:4200/remoteEntry.js",
-        //     "messageCenter": "messageCenter@http://localhost:4200/remoteEntry.js",
 
-        // },
+        // For hosts (please adjust)
+        remotes: {
+            "messageCenter": "messageCenter@http://localhost:3000/remoteEntry.js",
+        },
 
         shared: {
-          "@angular/core": { singleton: true, strictVersion: true }, 
-          "@angular/common": { singleton: true, strictVersion: true }, 
-          "@angular/common/http": { singleton: true, strictVersion: true }, 
+          "@angular/core": { singleton: true, strictVersion: true },
+          "@angular/common": { singleton: true, strictVersion: true },
+          "@angular/common/http": { singleton: true, strictVersion: true },
           "@angular/router": { singleton: true, strictVersion: true },
 
           ...sharedMappings.getDescriptors()
         }
-        
+
     }),
     sharedMappings.getPlugin()
   ],
