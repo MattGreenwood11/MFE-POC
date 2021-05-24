@@ -157,7 +157,7 @@
       "prefix": "test-nx-workspace",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/apps/legal-workspace",
             "index": "apps/legal-workspace/src/index.html",
@@ -170,7 +170,9 @@
               "apps/legal-workspace/src/assets"
             ],
             "styles": ["apps/legal-workspace/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "apps/legal-workspace/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -192,7 +194,8 @@
                   "with": "apps/legal-workspace/src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/legal-workspace/webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -206,16 +209,21 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "legal-workspace:build:production"
+              "browserTarget": "legal-workspace:build:production",
+              "extraWebpackConfig": "apps/legal-workspace/webpack.prod.config.js"
             },
             "development": {
               "browserTarget": "legal-workspace:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "extraWebpackConfig": "apps/legal-workspace/webpack.config.js",
+            "port": 5000
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -233,11 +241,12 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "ngx-build-plus:karma",
           "outputs": ["coverage/apps/legal-workspace"],
           "options": {
             "jestConfig": "apps/legal-workspace/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/legal-workspace/webpack.config.js"
           }
         }
       }
