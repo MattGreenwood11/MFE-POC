@@ -10,9 +10,13 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     RouterModule.forRoot([
       {
+        path: 'cases-queue',
+        loadChildren: () => import('casesQueue/Module').then(m => m.AppModule)
+      },
+      {
         path: 'message-center',
         loadChildren: () => import('messageCenter/Module').then(m => m.AppModule)
-      }
+      },
     ], { initialNavigation: 'enabled' }),
   ],
   providers: [],

@@ -25,7 +25,8 @@ module.exports = {
 
         // For hosts (please adjust)
         remotes: {
-            "messageCenter": "messageCenter@http://localhost:3000/remoteEntry.js",
+          "casesQueue": "casesQueue@http://localhost:3003/remoteEntry.js",
+          "messageCenter": "messageCenter@http://localhost:3000/remoteEntry.js",
         },
 
         shared: {
