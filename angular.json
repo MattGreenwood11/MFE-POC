@@ -284,7 +284,7 @@
       "prefix": "test-nx-workspace",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/apps/cases-queue",
             "index": "apps/cases-queue/src/index.html",
@@ -296,8 +296,12 @@
               "apps/cases-queue/src/favicon.ico",
               "apps/cases-queue/src/assets"
             ],
-            "styles": ["apps/cases-queue/src/styles.scss"],
-            "scripts": []
+            "styles": [
+              "apps/cases-queue/src/styles.scss"
+            ],
+            "scripts": [],
+            "extraWebpackConfig": "apps/cases-queue/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -319,7 +323,8 @@
                   "with": "apps/cases-queue/src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/cases-queue/webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -333,16 +338,21 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cases-queue:build:production"
+              "browserTarget": "cases-queue:build:production",
+              "extraWebpackConfig": "apps/cases-queue/webpack.prod.config.js"
             },
             "development": {
               "browserTarget": "cases-queue:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "extraWebpackConfig": "apps/cases-queue/webpack.config.js",
+            "port": 3003
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -360,11 +370,12 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "ngx-build-plus:karma",
           "outputs": ["coverage/apps/cases-queue"],
           "options": {
             "jestConfig": "apps/cases-queue/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/cases-queue/webpack.config.js"
           }
         }
       }
